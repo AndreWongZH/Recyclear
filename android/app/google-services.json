@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "511307616505",
+    "firebase_url": "https://recyclear20.firebaseio.com",
+    "project_id": "recyclear20",
+    "storage_bucket": "recyclear20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511307616505:android:daa435dd5f927f53889228",
+        "android_client_info": {
+          "package_name": "com.cascasm.recyclear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511307616505-2lmnm3l3m987bmboabivd4f9nkrske0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNlbmWPQAXIKd4tmct16JH86fXPUkGvt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511307616505-2lmnm3l3m987bmboabivd4f9nkrske0c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "511307616505-efc89j2ruq39549rfnaubceompbt5nre.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cascasm.recyclear"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
