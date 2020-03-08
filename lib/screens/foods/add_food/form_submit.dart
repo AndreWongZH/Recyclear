@@ -17,6 +17,8 @@ class FormSubmitState extends State<FormSubmit> {
   final _nameController = TextEditingController();
   final _locationController = TextEditingController();
   final _timeController = TextEditingController();
+  final _tokenController = TextEditingController();
+
   File _image;
 
   @override
@@ -30,6 +32,7 @@ class FormSubmitState extends State<FormSubmit> {
               FormSubmitComponent("Enter name of food to give away", "Please enter a food name", _nameController),
               FormSubmitComponent("Enter where you live", "Please enter a location", _locationController),
               FormSubmitComponent("Enter availability of time", "Please enter a time period", _timeController),
+              FormSubmitComponent("Enter tokens", "Please enter a value", _tokenController),
               _image != null
                 ? Image.asset(
                   _image.path,
@@ -45,7 +48,7 @@ class FormSubmitState extends State<FormSubmit> {
               RaisedButton(
                 onPressed: () {
                   if (widget._formKey.currentState.validate()) {
-                    widget._sendData(context, _nameController.text, _locationController.text, _timeController.text, _image);
+                    widget._sendData(context, _nameController.text, _locationController.text, _timeController.text, _image, _tokenController.text);
                   }
                 },
                 child: Text("Submit"),

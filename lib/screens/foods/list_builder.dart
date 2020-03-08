@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'food_detail.dart';
+import '../item_detail/item_detail.dart';
 
 class ListBuilder extends StatelessWidget {
   String type;
@@ -51,7 +51,7 @@ class ListBuilder extends StatelessWidget {
                   return FlatButton(
                     onPressed: () => Navigator.push(
                         context, MaterialPageRoute(
-                          builder: (context) => FoodDetail()
+                          builder: (context) => ItemDetail("food", ds.documentID, ds["uid"])
                         )
                     ),
                     child: Row(
@@ -63,15 +63,21 @@ class ListBuilder extends StatelessWidget {
                             child: Row(
                               children: <Widget>[
                                 ds["image"] != null
-                                  ? Image.network(
-                                      ds["image"],
-                                      width: 100,
-                                      height: 100,
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(30.0),
+                                      child: Image.network(
+                                          ds["image"],
+                                          width: 100,
+                                          height: 100,
+                                        ),
                                     )
                                   : Icon(
                                       Icons.fastfood,
                                       size: 50,
                                     ),
+                                SizedBox(
+                                  width: 20.0,
+                                ),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,

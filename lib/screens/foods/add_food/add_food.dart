@@ -20,33 +20,33 @@ class AddFoodState extends State<AddFood> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ScreenBar(context, "Add Food"),
-      body: FormSubmit(_formKey, _sendData),
+      body: SingleChildScrollView(child: FormSubmit(_formKey, _sendData),),
     );
   }
 
-  void _sendData(context, name, location, time, image) async {
+  void _sendData(context, name, location, time, image, token) async {
     String _imageUrl;
-    StorageReference imageRef =  storageReference.ref().child("food/${path.basename(image.path)}");
+    StorageReference imageRef =
+        storageReference.ref().child("food/${path.basename(image.path)}");
     StorageUploadTask uploadTask = imageRef.putFile(image);
     await uploadTask.onComplete;
     _imageUrl = await imageRef.getDownloadURL();
 
-    DocumentReference ref = await databaseReference.collection("food")
-      .add({
-        'name': name,
-        'location': location,
-        'time': time,
-        'image' : _imageUrl,
-        'uid' : uid,
-      });
+    DocumentReference ref = await databaseReference.collection("food").add({
+      'name': name,
+      'location': location,
+      'time': time,
+      'image': _imageUrl,
+      'uid': uid,
+      'token': int.parse(token),
+    });
     final snackBar = SnackBar(
       content: Text('Food item added'),
       action: SnackBarAction(
           label: "return",
           onPressed: () {
             Navigator.pop(context);
-          }
-      ),
+          }),
     );
     Scaffold.of(context).showSnackBar(snackBar);
   }

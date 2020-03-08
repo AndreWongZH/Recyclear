@@ -37,7 +37,12 @@ Widget HomeBar(context){
       actions: <Widget>[
         FlatButton(
           onPressed: () => _signOut(),
-          child: Text("Sign Out"),
+          child: Text(
+              "Sign Out",
+              style: TextStyle(
+                color: Colors.white
+              ),
+          ),
         ),
       ],
     bottom: PreferredSize(
