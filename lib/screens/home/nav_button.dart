@@ -1,17 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../foods/food.dart';
-import '../ingredients/ingredients.dart';
+import '../item_viewer/food.dart';
+import '../item_viewer/ingredients.dart';
 
 class NavButton extends StatelessWidget {
+  FirebaseUser user;
   String _location;
 
-  NavButton(this._location);
+  NavButton(this.user, this._location);
 
   void _redirect(context) {
     Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => _pageFinder())
-    );
+        context, MaterialPageRoute(builder: (context) => _pageFinder()));
   }
 
   String _getImagePath() {
@@ -23,15 +23,15 @@ class NavButton extends StatelessWidget {
 
   Widget _pageFinder() {
     if (this._location == "Food") {
-      return Food();
+      return Food(user);
     }
-    return Ingredients();
+    return Ingredients(user);
   }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child:  FlatButton(
+      child: FlatButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.all(0.0),
         onPressed: () => _redirect(context),
@@ -39,9 +39,9 @@ class NavButton extends StatelessWidget {
           padding: EdgeInsets.all(0.0),
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(
-                    _getImagePath(),
-                ),
+              image: AssetImage(
+                _getImagePath(),
+              ),
             ),
           ),
         ),

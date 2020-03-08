@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
       appBar: HomeBar(context, user),
       body: Column(
         children: <Widget>[
-          NavButton("Food"),
+          NavButton(user, "Food"),
           Container(
             padding: EdgeInsets.symmetric(vertical: 15.0),
             child: Text(
@@ -26,7 +26,7 @@ class Home extends StatelessWidget {
               ),
             ),
           ),
-          NavButton("Ingredients"),
+          NavButton(user, "Ingredients"),
           Container(
             padding: EdgeInsets.symmetric(vertical: 15.0),
             child: Text(

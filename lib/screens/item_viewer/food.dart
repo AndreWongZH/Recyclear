@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:recyclear/screens/screen_bar.dart';
-import 'add_food/add_food.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../item_add/add_item.dart';
 import 'list_builder.dart';
 
 class Food extends StatelessWidget{
+  FirebaseUser user;
+
+  Food(this.user);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ScreenBar(context, "List of food"),
-      body: ListBuilder("food"),
+      body: ListBuilder(user, "food"),
       floatingActionButton: FloatingActionButton(
           onPressed: () => _navToAddFood(context),
         child: Icon(Icons.add),
@@ -21,7 +26,7 @@ class Food extends StatelessWidget{
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => AddFood()
+            builder: (context) => AddItem("food")
         )
     );
   }

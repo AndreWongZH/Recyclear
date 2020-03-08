@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:recyclear/screens/item_detail/user_row.dart';
 
@@ -46,9 +47,10 @@ class MainWidget extends StatelessWidget {
             height: 500,
             color: Colors.grey[400],
             child: ClipRRect(
-              child: Image.network(
-                item["image"],
-                width: 200.0,
+              child: CachedNetworkImage(
+                imageUrl: item["image"],
+                width: 200,
+                placeholder: (context, url) => CircularProgressIndicator(),
               ),
               borderRadius: BorderRadius.circular(40.0),
             )),
