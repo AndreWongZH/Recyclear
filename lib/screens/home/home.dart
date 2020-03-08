@@ -1,12 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:recyclear/screens/home/home_bar.dart';
 import './nav_button.dart';
 
 class Home extends StatelessWidget {
+  FirebaseUser user;
+
+  Home(this.user);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HomeBar(context),
+      appBar: HomeBar(context, user),
       body: Column(
         children: <Widget>[
           NavButton("Food"),

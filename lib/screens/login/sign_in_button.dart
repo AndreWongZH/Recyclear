@@ -1,12 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:recyclear/auth/auth.dart';
 import 'package:recyclear/app.dart';
 
 class SignInButton extends StatelessWidget {
   void _signIn(context) {
-    signInWithGoogle().whenComplete(() {
+    signInWithGoogle().then((FirebaseUser user) {
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => App()
+          builder: (context) => App(user)
       ));
     });
   }

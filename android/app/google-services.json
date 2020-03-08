@@ -8,12 +8,28 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:511307616505:android:daa435dd5f927f53889228",
+        "mobilesdk_app_id": "1:511307616505:android:c254b8b186eb8faf889228",
         "android_client_info": {
           "package_name": "com.cascasm.recyclear"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "511307616505-g6olo1dsbb9c9403jjegcln77j5sbjal.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cascasm.recyclear",
+            "certificate_hash": "50c593c38fc7527c6aa672398d1347a4833dd029"
+          }
+        },
+        {
+          "client_id": "511307616505-r15on8h6qcg3hkbgns7a8roj1ors9af5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cascasm.recyclear",
+            "certificate_hash": "f5838334c032b68b636634e06ee332d7041d468c"
+          }
+        },
         {
           "client_id": "511307616505-2lmnm3l3m987bmboabivd4f9nkrske0c.apps.googleusercontent.com",
           "client_type": 3

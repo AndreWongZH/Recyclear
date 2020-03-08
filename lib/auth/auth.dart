@@ -11,7 +11,7 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 final Firestore _db = Firestore.instance;
 
-Future<String> signInWithGoogle() async {
+Future<FirebaseUser> signInWithGoogle() async {
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
   final GoogleSignInAuthentication googleSignInAuthentication =
   await googleSignInAccount.authentication;
@@ -47,7 +47,7 @@ Future<String> signInWithGoogle() async {
     uid = user.uid;
   });
 
-  return 'signInWithGoogle succeeded: $user';
+  return user;
 }
 
 

@@ -3,7 +3,7 @@ import '../../auth/auth.dart';
 import '../login/login.dart';
 import 'info_bar.dart';
 
-Widget HomeBar(context){
+Widget HomeBar(context, user){
 
   BoxDecoration _homebarDecoration = BoxDecoration(
       gradient: LinearGradient(
@@ -46,7 +46,7 @@ Widget HomeBar(context){
         ),
       ],
     bottom: PreferredSize(
-        child: InfoBar(),
+        child: InfoBar(user),
         preferredSize: Size.fromHeight(50.0)
     )
   );
