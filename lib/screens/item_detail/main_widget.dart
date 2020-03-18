@@ -43,7 +43,7 @@ class MainWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Container(
+        item != null ? Container(
             height: 500,
             color: Colors.grey[400],
             child: ClipRRect(
@@ -53,8 +53,9 @@ class MainWidget extends StatelessWidget {
                 placeholder: (context, url) => CircularProgressIndicator(),
               ),
               borderRadius: BorderRadius.circular(40.0),
-            )),
-        Container(
+            ))
+            : Container(),
+        item != null ? Container(
           padding: EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 10.0),
           child: Text(
             item["name"],
@@ -63,8 +64,8 @@ class MainWidget extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-        ),
-        Container(
+        ): Container(),
+        item != null ? Container(
           padding: EdgeInsets.only(left: 20.0),
           child: Row(
             children: <Widget>[
@@ -75,8 +76,8 @@ class MainWidget extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        Container(
+        ) : Container(),
+        item != null ? Container(
           padding: EdgeInsets.only(left: 20.0),
           child: Row(
             children: <Widget>[
@@ -87,9 +88,9 @@ class MainWidget extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        infoWidget(item),
-        UserRow(item["uid"]),
+        ) : Container(),
+        item != null ? infoWidget(item) : Container(),
+        item != null ? UserRow(item["uid"]) : Container(),
       ],
     );
   }

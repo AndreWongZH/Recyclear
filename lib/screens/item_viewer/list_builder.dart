@@ -42,7 +42,7 @@ class ListBuilder extends StatelessWidget {
         stream: Firestore.instance.collection(type).snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Text('no data :(');
+            return Center(child: CircularProgressIndicator());
           } else {
             List<DocumentSnapshot> items = snapshot.data.documents;
 

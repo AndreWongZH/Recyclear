@@ -22,7 +22,7 @@ class ItemDetail extends StatelessWidget {
           stream: Firestore.instance.collection(_type).document(_id).snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return Text('no data :(');
+              return Center(child: CircularProgressIndicator());
             } else {
               DocumentSnapshot item = snapshot.data;
               return MainWidget(_type, item);

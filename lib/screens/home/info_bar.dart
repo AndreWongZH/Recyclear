@@ -24,7 +24,7 @@ class InfoBar extends StatelessWidget {
                 .snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
-                return Text('no data :(');
+                return Center(child: CircularProgressIndicator());
               } else {
                 DocumentSnapshot user = snapshot.data;
 

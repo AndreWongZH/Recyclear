@@ -35,11 +35,60 @@ Widget BottomNavBar(context, _type, _id, _uid, user) {
     }
   }
 
-  addTokens() {
-    // update user's tokeen and pop
+  void addTokens(token) async {
+    // update user's token and pop
+    if (_type == 'food') {
+      DocumentSnapshot userDoc =
+      await Firestore.instance.collection("users").document(user.uid).get();
+
+      int tokensToDeduct = userDoc["token"] - token;
+
+      Firestore.instance.collection("users").document(user.uid).updateData({'token': tokensToDeduct});
+    } else {
+      DocumentSnapshot userDoc =
+      await Firestore.instance.collection("users").document(_uid).get();
+
+      int tokensToAdd = userDoc["token"] + 50;
+
+      Firestore.instance.collection("users").document(_uid).updateData({'token': tokensToAdd});
+    }
+
+    Firestore.instance.collection(_type).document(_id).delete();
+  }
+
+  void showError() async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Incorrct Code"),
+          actions: <Widget>[
+            FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("CLOSE")),
+          ],
+        );
+      },
+    );
+  }
+
+  void checkCode(item) async {
+    if (item['code'] == _codeController.text) {
+      addTokens(item["token"]);
+      Navigator.of(context).popUntil((route) => route.isFirst);
+    } else {
+      showError();
+    }
   }
 
   void enterCode(context) async {
+    DocumentSnapshot item =
+    await Firestore.instance.collection(_type).document(_id).get();
+    DocumentSnapshot userDoc =
+    await Firestore.instance.collection("users").document(user.uid).get();
+
     if (_type == "ingredient") {
       return showDialog(
           context: context,
@@ -52,7 +101,7 @@ Widget BottomNavBar(context, _type, _id, _uid, user) {
                     InputDecoration(hintText: "Proceed by entering code"),
               ),
               actions: <Widget>[
-                FlatButton(onPressed: () => {}, child: Text("CONFIRM")),
+                FlatButton(onPressed: () => checkCode(item), child: Text("CONFIRM")),
                 FlatButton(
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -62,10 +111,6 @@ Widget BottomNavBar(context, _type, _id, _uid, user) {
             );
           });
     }
-    DocumentSnapshot item =
-        await Firestore.instance.collection(_type).document(_id).get();
-    DocumentSnapshot userDoc =
-        await Firestore.instance.collection("users").document(user.uid).get();
 
     if (_type == "food" && item['token'] > userDoc['token']) {
       return showDialog(
@@ -94,11 +139,7 @@ Widget BottomNavBar(context, _type, _id, _uid, user) {
             ),
             actions: <Widget>[
               FlatButton(
-                  onPressed: () {
-                    item['code'] == _codeController.text
-                        ? addTokens()
-                        : print("wrong");
-                  },
+                  onPressed: () => checkCode(item),
                   child: Text("CONFIRM")),
               FlatButton(
                   onPressed: () {
